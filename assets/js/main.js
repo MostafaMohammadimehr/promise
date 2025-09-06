@@ -1,4 +1,4 @@
-const hassmeeting = true;
+const hassmeeting = false;
 const metting = new Promise((resolve, reject) => {
   if (!hassmeeting) {
     const meetingdetails = {
@@ -13,10 +13,11 @@ const metting = new Promise((resolve, reject) => {
 });
 
 const aDd = (meetingdetails) => {
-  return new Promise((res, rej) => {
-    const calender = `${meetingdetails.name} is scheduled at ${meetingdetails.time} on ${meetingdetail.location}`;
-    res(calender);
-  });
+  const calender = `${meetingdetails.name} is scheduled at ${meetingdetails.time} on ${meetingdetails.location}`;
+  return Promise.resolve(calender);
 };
 
-metting.then((res) => console.log(res)).catch((rej) => console.log(rej));
+metting
+  .then(aDd)
+  .then((res) => console.log(res))
+  .catch((rej) => console.log(rej));
