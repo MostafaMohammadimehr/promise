@@ -1,23 +1,10 @@
-const hassmeeting = false;
-const metting = new Promise((resolve, reject) => {
-  if (!hassmeeting) {
-    const meetingdetails = {
-      name: "Codyad meeting",
-      location: "Tehran",
-      time: "01:00 PM",
-    };
-    resolve(meetingdetails);
-  } else {
-    reject(new Error("meeting canseled"));
-  }
+const promise1 = Promise.resolve("promise 1 is ok");
+const promise2 = new Promise((res, rej) => {
+  setTimeout(() => {
+    res("promise 2 is ok");
+  }, 1000);
 });
+promise1.then((res) => console.log(`promise 1 : ${res}`));
+promise2.then((res) => console.log(`promise 2 : ${res}`));
 
-const aDd = (meetingdetails) => {
-  const calender = `${meetingdetails.name} is scheduled at ${meetingdetails.time} on ${meetingdetails.location}`;
-  return Promise.resolve(calender);
-};
-
-metting
-  .then(aDd)
-  .then((res) => console.log(res))
-  .catch((rej) => console.log(rej));
+Promise.all([promise1, promise2]).then((res) => console.log(res));
