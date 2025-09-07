@@ -1,8 +1,10 @@
 const getmessage = (callback) => {
-  setTimeout(() => {
-    callback("hello");
-  }, 2000);
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      res("hello");
+    }, 2000);
+  });
 };
 const myfunction = (msg) => console.log(msg);
 
-getmessage(myfunction);
+getmessage().then(myfunction);
